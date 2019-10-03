@@ -1,0 +1,234 @@
+Microsoft Windows [Version 6.2.9200]
+(c) 2012 Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>sqlplus/nolog
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Sep 26 10:43:33 2019
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> conn system / oradiu as sysdba
+Connected.
+SQL> alter user hr identified by password account unlock;
+User altered.
+SQL> conn hr
+Enter password:
+Connected.
+
+
+
+
+
+
+
+SQL> CREATE Table Malaysia (
+  2  SID number(12),
+  3  FName varchar(255),
+  4  LName varchar(255),
+  5  Age number(12),
+  6  Grade number(12),
+  7  Phone_Number int);
+
+Table created.
+
+SQL> INSERT INTO Malaysia
+  2  Values (1, Ovi, Majumdar, 22, 1.25, 0123);
+Values (1, Ovi, Majumdar, 22, 1.25, 0123)
+                *
+ERROR at line 2:
+ORA-00984: column not allowed here
+
+
+SQL> insert into Malaysia
+  2  values ('1','Ovi','Majumdar','22','1.25','0123');
+
+1 row created.
+
+SQL> insert into Malaysia
+  2  values ('2','Akash','Pathan','21','2.22','6541');
+
+1 row created.
+
+
+
+
+SQL> select * from Malaysia
+  2  ;
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         1
+Ovi
+Majumdar
+        22          1          123
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         2
+Akash
+Pathan
+        21          2         6541
+
+
+SQL> insert into Malaysia
+  2  values ('3','Raja','Tushar','24','','6548');
+
+1 row created.
+
+SQL> insert into Malaysia
+  2  values ('4','Nusrat','Jahan','26','1.21','1324');
+
+1 row created.
+
+SQL> insert into Malaysia
+  2  values ('5','Rubaiya','Hafiz','24','0.88','9546');
+
+1 row created.
+
+SQL> insert into Malaysia
+  2  values ('6','Sazzad','','28','4.00','3598');
+
+1 row created.
+
+SQL> insert into Malaysia
+  2  values ('7','Nag','Pinku','30','0.25','');
+
+1 row created.
+
+SQL> select * from Malaysia;
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         1
+Ovi
+Majumdar
+        22          1          123
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         2
+Akash
+Pathan
+        21          2         6541
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         3
+Raja
+Tushar
+        24                    6548
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         4
+Nusrat
+Jahan
+        26          1         1324
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         5
+Rubaiya
+Hafiz
+        24          1         9546
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         6
+Sazzad
+
+        28          4         3598
+
+
+       SID
+----------
+FNAME
+--------------------------------------------------------------------------------
+
+LNAME
+--------------------------------------------------------------------------------
+
+       AGE      GRADE PHONE_NUMBER
+---------- ---------- ------------
+         7
+Nag
+Pinku
+        30          0
+
+
+7 rows selected.
+
+SQL>
+
+
+
