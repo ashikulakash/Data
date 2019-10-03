@@ -228,7 +228,15 @@ Pinku
 
 7 rows selected.
 
+
+
+
+
+
+SQL> select * from dual;
+
+D
+-
+X
+
 SQL>
-
-
-
