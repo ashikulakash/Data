@@ -1,0 +1,90 @@
+Microsoft Windows [Version 10.0.17763.737]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\ashik>sqlplus/nolog
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Oct 3 18:04:59 2019
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+SQL> conn / as sysdba
+Connected.
+SQL> alter user hr identified by pass account unlock;
+
+User altered.
+
+SQL> conn hr;
+Enter password:
+Connected.
+
+SQL> create table Malaysia(
+  2  SID number(10),
+  3  FName varchar(15),
+  4  LName varchar(15),
+  5  Age number(3),
+  6  Grade number(3,2),
+  7  Phone_Number varchar(11));
+
+Table created.
+
+
+SQL> insert all
+  2  INTO Malaysia VALUES('1','Ovi','Majumdar','22','1.25','0123')
+  3  INTO Malaysia VALUES('2','Akash','Pathan','21','2.22','6541')
+  4  INTO Malaysia VALUES('3','Raja','Tushar','24','','6548')
+  5  INTO Malaysia VALUES('4','Nusrat','Jahan','26','1.21','1324')
+  6  INTO Malaysia VALUES('5','Rubaiya','Hafiz','24','0.88','9546')
+  7  INTO Malaysia VALUES('6','Sazzad','','28','4.00','9598')
+  8  INTO Malaysia VALUES('7','Nag','Pinku','30','0.25','')
+  9  select * from dual;
+
+7 rows created.
+
+SQL> select * from Malaysia;
+
+       SID FNAME           LNAME                  AGE      GRADE PHONE_NUMBE
+---------- --------------- --------------- ---------- ---------- -----------
+         1 Ovi             Majumdar                22       1.25 0123
+         2 Akash           Pathan                  21       2.22 6541
+         3 Raja            Tushar                  24            6548
+         4 Nusrat          Jahan                   26       1.21 1324
+         5 Rubaiya         Hafiz                   24        .88 9546
+         6 Sazzad                                  28          4 9598
+         7 Nag             Pinku                   30        .25
+
+7 rows selected.
+
+SQL> delete from Malaysia where FName='Ovi';
+
+1 row deleted.
+
+SQL> delete from Malaysia where FName='Nag';
+
+1 row deleted.
+
+SQL> select * from Malaysia;
+
+       SID FNAME           LNAME                  AGE      GRADE PHONE_NUMBE
+---------- --------------- --------------- ---------- ---------- -----------
+         2 Akash           Pathan                  21       2.22 6541
+         3 Raja            Tushar                  24            6548
+         4 Nusrat          Jahan                   26       1.21 1324
+         5 Rubaiya         Hafiz                   24        .88 9546
+         6 Sazzad                                  28          4 9598
+
+
+
+
+SQL> drop table Malaysia;
+
+Table dropped.
+
+SQL> select * from Malaysia;
+select * from Malaysia
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
