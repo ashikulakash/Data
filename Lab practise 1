@@ -55,6 +55,30 @@ SQL> select * from Malaysia;
 
 7 rows selected.
 
+
+
+SQL> UPDATE Malaysia
+  2  SET LName='Dont Know'
+  3  WHERE SID='6';
+
+1 row updated.
+
+SQL> select * from Malaysia;
+
+       SID FNAME           LNAME                  AGE      GRADE PHONE_NUMBE
+---------- --------------- --------------- ---------- ---------- -----------
+         1 Ovi             Majumdar                22       1.25 0123
+         2 Akash           Pathan                  21       2.22 6541
+         3 Raja            Tushar                  24            6548
+         4 Nusrat          Jahan                   26       1.21 1324
+         5 Rubaiya         Hafiz                   24        .88 9546
+         6 Sazzad          Dont Know               28          4 9598
+         7 Nag             Pinku                   30        .25
+
+7 rows selected.
+
+SQL>
+
 SQL> delete from Malaysia where FName='Ovi';
 
 1 row deleted.
@@ -71,7 +95,7 @@ SQL> select * from Malaysia;
          3 Raja            Tushar                  24            6548
          4 Nusrat          Jahan                   26       1.21 1324
          5 Rubaiya         Hafiz                   24        .88 9546
-         6 Sazzad                                  28          4 9598
+         6 Sazzad          Dont Know               28          4 9598
 
 
 
