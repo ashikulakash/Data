@@ -1,0 +1,50 @@
+Microsoft Windows [Version 6.2.9200]
+(c) 2012 Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator>sqlplus/nolog
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Oct 17 10:22:06 2019
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> conn / as sysdba
+Connected.
+SQL> alter user hr identified by aaa account unlock;
+
+User altered.
+
+SQL> conn hr;
+Enter password:
+Connected.
+
+SQL> create table customer(
+  2  customer_no number(10),
+  3  name varchar(15),
+  4  e_mail varchar(20));
+
+Table created.
+
+SQL> create table orders(
+  2  order_no number(15),
+  3  order_date number(10),
+  4  handeling_cost number(10),
+  5  customer_no number(10));
+
+Table created.
+
+SQL> create table include(
+  2  unite_price number(10),
+  3  quantity number(10),
+  4  order_no number(10),
+  5  product_no number(10));
+
+Table created.
+
+SQL> create table product(
+  2  product_no number(10),
+  3  product_name varchar(15),
+  4  list_price number(15));
+
+Table created.
+
+SQL>
