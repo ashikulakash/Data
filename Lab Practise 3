@@ -1,45 +1,142 @@
+Microsoft Windows [Version 6.2.9200]
+(c) 2012 Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator>sqlplus/nolog
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Oct 24 10:46:46 2019
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+SQL> conn system as sysdba
+Enter password:
+Connected.
+SQL> conn hr;
+Enter password:
 Connected.
 SQL> create table customer(
-  2  customer number number(7),
-  3  name varchar(15),
-  4  email varchar(20));
-customer number number(7),
-                *
-ERROR at line 2:
-ORA-00907: missing right parenthesis
-
-
-SQL> create table customer(
-  2  customer num number(7),
-  3  name varchar(15),
-  4  email varchar(20));
-customer num number(7),
-             *
-ERROR at line 2:
-ORA-00907: missing right parenthesis
-
-
-SQL> create table customer(
-  2  customer_no number(7) not null primary key,
-  3  name varchar(15) not null,
-  4  email varchar(20) not null unique);
+  2      customer_no number(5) not null primary key,
+  3      name varchar(15),
+  4      email varchar(20));
 
 Table created.
+
 
 SQL> create table orders(
-  2  orders_no number(7),
-  3  orders_date varchar(12),
-  4  handeling_cost number(15),
-  5  customer_no number(7) not null primary key);
+  2      orders_no number(7) not null primary key,
+  3     customer_no number(7) not null,
+  4      orders_date date,
+  5      handeling_cost number(5,2),
+  6     foreign key (customer_no) references customer(customer_no));
 
 Table created.
 
 
-SQL> create table product(
-  2  product_no number(7),
-  3  product_name varchar(15),
-  4  list_price number(12));
+SQL>  create table product(
+  2      product_no number(5) not null primary key,
+  3     product_name varchar(15),
+  4      list_price number(10));
+
+Table created.
+
+
+SQL> create table includes(
+  2     orders_no number(5) not null,
+  3     foreign key (orders_no) references orders(orders_no),
+  4     product_no number(5) not null,
+  5     foreign key (product_no) references product(product_no),
+  6     unite_price number(5),
+  7     quantity varchar(10));
 
 Table created.
 
 SQL>
+
+
+SQL> insert all
+  2     into customer values('1','akash','a@g.com')
+  3     into customer values('2','tanbir','t@g.com')
+  4     into customer values('3','nobal','n@g.com')
+  5     into customer values('4','avijit','x@g.com')
+  6     into customer values('5','pranto','p@g.com')
+  7     select * from dual;
+
+5 rows created.
+
+SQL> insert all
+  2     into orders values('10','1',(to_date('2001-10-01','yyyy-mm-dd')),'105')
+  3     into orders values('20','2',(to_date('2005-10-01','yyyy-mm-dd')),'250')
+  4     into orders values('30','3',(to_date('2010-10-01','yyyy-mm-dd')),'500')
+  5     into orders values('40','4',(to_date('2014-10-01','yyyy-mm-dd')),'101')
+  6     into orders values('50','5',(to_date('2008-10-01','yyyy-mm-dd')),'990')
+  7     select * from dual;
+
+5 rows created.
+
+
+SQL>    insert all
+  2     into product values('11','v','500')
+  3     into product values('22','w','100')
+  4     into product values('33','x','200')
+  5     into product values('44','y','300')
+  6     into product values('55','z','900')
+  7     select * from dual;
+
+5 rows created.
+
+
+SQL> insert all
+  2      into includes values('10','11','1500','50')
+  3      into includes values('20','22','2500','40')
+  4      into includes values('30','33','3500','35')
+  5      into includes values('40','44','4500','20')
+  6      into includes values('50','55','5500','10')
+  7     select * from dual;
+
+5 rows created.
+
+
+SQL>    select * from customer;
+
+CUSTOMER_NO NAME            EMAIL
+----------- --------------- --------------------
+          1 akash           a@g.com
+          2 tanbir          t@g.com
+          3 nobal           n@g.com
+          4 avijit          x@g.com
+          5 pranto          p@g.com
+
+SQL>    select * from orders;
+
+ ORDERS_NO CUSTOMER_NO ORDERS_DA HANDELING_COST
+---------- ----------- --------- --------------
+        10           1 01-OCT-01            105
+        20           2 01-OCT-05            250
+        30           3 01-OCT-10            500
+        40           4 01-OCT-14            101
+        50           5 01-OCT-08            990
+
+SQL>    select * from product;
+
+PRODUCT_NO PRODUCT_NAME    LIST_PRICE
+---------- --------------- ----------
+        11 v                      500
+        22 w                      100
+        33 x                      200
+        44 y                      300
+        55 z                      900
+
+SQL>    select * from includes;
+
+ ORDERS_NO PRODUCT_NO UNITE_PRICE QUANTITY
+---------- ---------- ----------- ----------
+        10         11        1500 50
+        20         22        2500 40
+        30         33        3500 35
+        40         44        4500 20
+        50         55        5500 10
+
+
+
+
+
+
